@@ -9,7 +9,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="kardan"
+# ZSH_THEME="kardan"
+ZSH_THEME="jonathan"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -106,3 +107,11 @@ compinit
 _comp_options+=(globdots)
 
 alias bat="batcat"
+
+++g() {
+  g++ $1 -o /tmp/$1.tmp.out && /tmp/$1.tmp.out && rm /tmp/$1.tmp.out
+}
+
+upl() {
+  curl --upload-file $1 https://transfer.sh/$1
+}
