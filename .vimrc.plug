@@ -1,9 +1,0 @@
-call plug#begin('~/.vim/plugged')
-
-"Fugitive Vim Github Wrapper
-Plug 'davidhalter/jedi-vim'
-Plug 'untitled-ai/jupyter_ascending.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'preservim/nerdtree'
-
-call plug#end()
