@@ -24,12 +24,12 @@ __install_neovim()
   sudo mv nvim /usr/bin
 
   # Install vim-plug
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   # Configure
   mkdir -p ~/.config/nvim
-  cp ./cfgs/init.vim ~/.config/
+  cp ./cfgs/neovim/init.vim ~/.config/
 
   # Install Plugins
   nvim +'PlugInstall --sync' +qall &> /dev/null
