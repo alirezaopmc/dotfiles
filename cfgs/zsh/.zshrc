@@ -135,3 +135,6 @@ jav() {
 
 # Z configs
 zstyle ':completion:*' menu select
+
+# Set default shell
+set -g default-shell /bin/zsh
