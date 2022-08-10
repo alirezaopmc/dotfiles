@@ -29,7 +29,7 @@ __install_neovim()
 
   # Configure
   mkdir -p ~/.config/nvim
-  cp ./cfgs/neovim/init.vim ~/.config/
+  cp ./cfgs/neovim/init.vim ~/.config/nvim
 
   # Install Plugins
   nvim +'PlugInstall --sync' +qall &> /dev/null
