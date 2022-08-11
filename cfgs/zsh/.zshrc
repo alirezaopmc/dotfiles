@@ -110,6 +110,8 @@ _comp_options+=(globdots)
 
 alias trm="nc termbin.com 9999"
 alias jr="java -jar"
+alias python="python3"
+alias ping="ping -c 4"
 
 ++g() {
   g++ "$1" -o /tmp/tmp.out && /tmp/tmp.out && rm /tmp/tmp.out
