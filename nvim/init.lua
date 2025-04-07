@@ -1,3 +1,2 @@
 -- User customization configs
-require('custom')
-
+require("custom")
