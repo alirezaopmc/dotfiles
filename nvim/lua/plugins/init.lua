@@ -3,5 +3,6 @@ return {
 	require("plugins.git"),
 	require("plugins.lsp"),
 	require("plugins.formatting"),
+	require("plugins.theme"),
 }
 
