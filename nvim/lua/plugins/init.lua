@@ -4,5 +4,5 @@ return {
 	require("plugins.lsp"),
 	require("plugins.formatting"),
 	require("plugins.theme"),
+	require("plugins.utils"),
 }
-
