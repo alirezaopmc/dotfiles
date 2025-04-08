@@ -5,4 +5,5 @@ return {
 	require("plugins.formatting"),
 	require("plugins.theme"),
 	require("plugins.utils"),
+	require("plugins.lint"),
 }
