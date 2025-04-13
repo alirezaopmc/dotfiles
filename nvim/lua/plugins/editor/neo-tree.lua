@@ -1,24 +1,24 @@
 toggleNeoTree = function()
-    local neo_win = nil
-    local neo_open = false
-    for _, win in ipairs(vim.api.nvim_list_wins()) do
-        local buf = vim.api.nvim_win_get_buf(win)
-        local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-        if ft == "neo-tree" then
-            neo_open = true
-            neo_win = win
-            break
-        end
-    end
-    if not neo_open then
-        vim.cmd("Neotree show")
-    else
-        if vim.api.nvim_get_current_win() == neo_win then
-            vim.cmd("Neotree close")
-        else
-            vim.api.nvim_set_current_win(neo_win)
-        end
-    end
+	local neo_win = nil
+	local neo_open = false
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+		if ft == "neo-tree" then
+			neo_open = true
+			neo_win = win
+			break
+		end
+	end
+	if not neo_open then
+		vim.cmd("Neotree show")
+	else
+		if vim.api.nvim_get_current_win() == neo_win then
+			vim.cmd("Neotree close")
+		else
+			vim.api.nvim_set_current_win(neo_win)
+		end
+	end
 end
 
 return {
@@ -37,6 +37,11 @@ return {
 	---@module 'neo-tree'
 	---@type neotree.Config?
 	opts = {
-		-- fill any relevant options here
+		filesystem = {
+			filtered_items = {
+				visible = ture,
+				hide_dotfiles = false,
+			},
+		},
 	},
 }
