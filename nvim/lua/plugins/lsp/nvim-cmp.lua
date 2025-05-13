@@ -80,8 +80,5 @@ return {
 
 		-- Set up lspconfig with nvim-cmp capabilities.
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		require("mason-lspconfig").setup({
-			automatic_enable = false,
-		})
 	end,
 }
