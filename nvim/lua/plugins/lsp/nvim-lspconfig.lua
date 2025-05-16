@@ -190,8 +190,8 @@ return {
 
 		-- LSP servers and clients are able to communicate to each other what features they support.
 		--  By default, Neovim doesn't support everything that is in the LSP specification.
-		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+		--  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
+		--  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
@@ -216,7 +216,12 @@ return {
 			--
 			-- But for many setups, the LSP (`ts_ls`) will work just fine
 			-- ts_ls = {},
-			--
+
+			kotlin_language_server = {
+				init_options = {
+					storagePath = vim.fn.stdpath("data") .. "/kotlin_language_server",
+				},
+			},
 
 			lua_ls = {
 				-- cmd = { ... },
@@ -250,6 +255,8 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
+			"kotlin-language-server", -- Add kotlin-language-server to be installed by Mason
+			"ktlint", -- Optional: add ktlint for Kotlin formatting
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -258,15 +265,19 @@ return {
 			automatic_installation = false,
 			handlers = {
 				function(server_name)
-					local server = servers[server_name] or {}
+					-- local server = servers[server_name] or {}
+					local server = vim.deepcopy(servers[server_name] or {})
 					-- This handles overriding only values explicitly passed
 					-- by the server configuration above. Useful when disabling
 					-- certain features of an LSP (for example, turning off formatting for ts_ls)
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+					vim.schedule(function()
+						vim.notify("Setting up LSP for: " .. server_name)
+						vim.notify(vim.inspect(server))
+					end)
 					require("lspconfig")[server_name].setup(server)
 				end,
 			},
 		})
 	end,
 }
-
