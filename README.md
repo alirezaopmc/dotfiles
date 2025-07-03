@@ -11,10 +11,9 @@ Manutal installation:
 ```bash
 git clone https://github.com/alirezaopmc/dotfiles.git
 cd dotfiles
-mkdir -p ~/.config/nvim
-ln -s nvim ~/.config/nvim
-ln -s wezterm ~/.config/wezterm
-ln -s tmux/.tmux.conf ~
-ln -s zsh/.zshrc ~
-ln -s bash/.bashrc
+ln -s "neovim" "~/.config/nvim"
+ln -s "wezterm" "~/.config/wezterm"
+ln -s "tmux/.tmux.conf" "~/.tmux.conf"
+ln -s "zsh/.zshrc" "~/.zshrc"
+ln -s "bash/.bashrc" "~/.bashrc"
 ```
