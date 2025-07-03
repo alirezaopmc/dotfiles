@@ -1,12 +1,20 @@
 # dotfiles
+## Setup
+
+Auto installation:
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+Manutal installation:
 ```bash
 git clone https://github.com/alirezaopmc/dotfiles.git
 cd dotfiles
-```
-
-## Neovim
-After cloning:
-```bash
-git checkout neovim # Optional: if you want my latest changes
-ln -s "$(pwd)/nvim" ~/.config/nvim
+mkdir -p ~/.config/nvim
+ln -s nvim ~/.config/nvim
+ln -s wezterm ~/.config/wezterm
+ln -s tmux/.tmux.conf ~
+ln -s zsh/.zshrc ~
+ln -s bash/.bashrc
 ```
