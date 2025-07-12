@@ -20,7 +20,7 @@ local is_dark = is_dark_mode()
 local config = wezterm.config_builder()
 
 -- Define Leader Key
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = ";", mods = "CTRL", timeout_milliseconds = 1000 }
 
 -- Set Keys
 config.keys = {
