@@ -1,22 +1,39 @@
-return { -- You can easily change to a different colorscheme.
-	-- Change the name of the colorscheme plugin below, and then
-	-- change the command in the config to whatever the name of that colorscheme is.
-	--
-	-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+return {
 	"folke/tokyonight.nvim",
-	priority = 1000, -- Make sure to load this before all the other start plugins.
+	priority = 1000,
+	lazy = false,
 	config = function()
-		---@diagnostic disable-next-line: missing-fields
+		-- Detect macOS appearance using AppleScript
+		local function is_dark_mode()
+			local handle = io.popen(
+				[[osascript -e 'tell application "System Events" to tell appearance preferences to get dark mode']]
+			)
+			if handle then
+				local result = handle:read("*a")
+				handle:close()
+				return result:match("true") ~= nil
+			end
+			return true -- default to dark if detection fails
+		end
+
+		local style = is_dark_mode() and "night" or "day"
+
 		require("tokyonight").setup({
+			style = style,
 			styles = {
-				comments = { italic = false }, -- Disable italics in comments
+				comments = { italic = false },
 			},
 		})
 
-		-- Load the colorscheme here.
-		-- Like many other themes, this one has different styles, and you could load
-		-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-		vim.cmd.colorscheme("tokyonight-night")
+		vim.cmd.colorscheme("tokyonight")
+
+		vim.api.nvim_create_user_command("ToggleTheme", function()
+			local current = vim.g.colors_name or ""
+			local next = current:match("tokyonight%-day") and "tokyonight-night" or "tokyonight-day"
+			vim.cmd.colorscheme(next)
+			vim.notify("Switched to " .. next)
+		end, {})
+
+		vim.keymap.set("n", "<leader>ut", "<cmd>ToggleTheme<CR>", { desc = "Toggle Theme" })
 	end,
 }
-
