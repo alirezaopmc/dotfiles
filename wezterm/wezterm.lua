@@ -33,7 +33,7 @@ config.keys = {
 			local overrides = window:get_config_overrides() or {}
 			overrides.color_scheme = is_dark and "Tokyo Night Storm" or "Tokyo Night Day"
 			window:set_config_overrides(overrides)
-			window:toast_notification("WezTerm", "Theme switched to " .. overrides.color_scheme, nil, 3000)
+			-- window:toast_notification("WezTerm", "Theme switched to " .. overrides.color_scheme, nil, 3000)
 		end),
 	},
 	{
