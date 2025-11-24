@@ -49,8 +49,6 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
-eval "$(uv generate-shell-completion zsh)"
-eval "$(uvx --generate-shell-completion zsh)"
 
 
 ## Custom binaries
@@ -284,3 +282,23 @@ if [ "$funcstack[1]" = "_ngrok" ]; then
     _ngrok
 fi
 compdef _ngrok ngrok
+
+export PATH="/Users/opmc/.local/bin:$PATH"
+
+# SDKMAN
+source "/Users/opmc/.sdkman/bin/sdkman-init.sh"
+
+PATH="/Users/opmc/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/opmc/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/opmc/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/opmc/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/opmc/perl5"; export PERL_MM_OPT;
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
